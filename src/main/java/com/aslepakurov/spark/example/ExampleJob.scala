@@ -14,8 +14,7 @@ object ExampleJob {
       .asInstanceOf[ExampleContext]
 
     val numbers = readNumbers(context)
-
     val maxNumber = getMaxNumber(context, numbers).getAs[String](0)
-    println("max umber = %s".format(maxNumber))
+    println("max number = %s".format(maxNumber))
   }
 }
