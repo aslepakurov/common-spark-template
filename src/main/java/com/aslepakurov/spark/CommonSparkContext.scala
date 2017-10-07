@@ -96,13 +96,13 @@ class CommonSparkContext (inputArgs: List[String]) extends Serializable {
     if (sqlContext == null) throw new IllegalArgumentException("Context is not initialized!")
     if (path == null) throw new IllegalArgumentException("Path should be specified!")
     var read = sqlContext.read
-    if(schema == null) read = read.schema(schema)
+    if(schema != null) read = read.schema(schema)
     read
       .format(format)
       .load(path)
   }
 
-  def writeDFToFile(dataFrame: DataFrame, path: String, format: String = "parquet", partitions: Int = 1, mode: SaveMode): Unit = {
+  def writeDFToFile(dataFrame: DataFrame, path: String, format: String = "parquet", partitions: Int = 1, mode: SaveMode = SaveMode.Overwrite): Unit = {
     dataFrame
       .repartition(partitions)
       .write
