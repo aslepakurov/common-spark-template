@@ -1,12 +1,12 @@
 package com.aslepakurov.spark.example
 
 import org.apache.spark.sql.{DataFrame, Row}
-import org.apache.spark.sql.functions.max
+import org.apache.spark.sql.functions._
 
 
 object ExampleService {
   def readNumbers(context: ExampleContext): DataFrame = {
-    context.readToDF(context.numbersPath.get)
+    context.readToDF(context.numbersPath.get, format = "csv")
   }
 
   def getMaxNumber(context: ExampleContext, numbersDF: DataFrame): Row = {

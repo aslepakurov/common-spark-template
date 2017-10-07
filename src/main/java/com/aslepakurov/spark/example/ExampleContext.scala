@@ -21,9 +21,9 @@ class ExampleContext (inputArgs: List[String]) extends CommonSparkContext(inputA
 object ExampleContext {
   val NUMBER_STRING = "--numbers"
 
-  def buildArgs(inputNumbers: Option[String]): List[String] = {
-    var args = List[String]()
-    if (optionPresent(inputNumbers)) args ++= List(NUMBER_STRING, inputNumbers.get)
+  def buildArgs(inputNumbers: Option[String]): Array[String] = {
+    var args = Array[String]()
+    if (optionPresent(inputNumbers)) args ++= Array(NUMBER_STRING, inputNumbers.get)
     args
   }
 

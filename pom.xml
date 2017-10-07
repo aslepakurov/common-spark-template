@@ -51,5 +51,11 @@
             <artifactId>aws-java-sdk-s3</artifactId>
             <version>1.11.115</version>
         </dependency>
+        <dependency>
+            <groupId>org.scalatest</groupId>
+            <artifactId>scalatest_2.11</artifactId>
+            <version>3.0.4</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 </project>
