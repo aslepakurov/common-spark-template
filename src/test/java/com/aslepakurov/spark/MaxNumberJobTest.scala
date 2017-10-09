@@ -20,6 +20,10 @@ class MaxNumberJobTest extends FlatSpec with Matchers {
     Source.fromFile(outpuFile).getLines().toList.head should be ("123")
   }
 
+  "Max number job class" should "be relevant" in {
+    MaxNumberContext.getJobClass should be (MaxNumberJob.getClass)
+  }
+
   private def resourceToPath(fileName: String) = {
     new File(getClass.getResource(fileName).toURI).getAbsolutePath
   }
