@@ -24,6 +24,13 @@ class MaxNumberJobTest extends FlatSpec with Matchers {
     MaxNumberContext.getJobClass should be (MaxNumberJob.getClass)
   }
 
+  "Max number job" should "throw IllegalArgumentException" in {
+    val thrown = intercept[IllegalArgumentException] {
+      MaxNumberJob.main(Array(MaxNumberContext.NUMBER_STRING, "/empty-path"))
+    }
+    thrown.getMessage should not be empty
+  }
+
   private def resourceToPath(fileName: String) = {
     new File(getClass.getResource(fileName).toURI).getAbsolutePath
   }

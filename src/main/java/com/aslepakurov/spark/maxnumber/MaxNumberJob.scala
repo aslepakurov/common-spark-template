@@ -13,6 +13,7 @@ object MaxNumberJob {
       .get
       .asInstanceOf[MaxNumberContext]
 
+    context.validateArgs()
     //1. Read numbers from input file
     val numbers = readNumbers(context)
     //2. Get max number
