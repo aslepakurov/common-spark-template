@@ -1,2 +1,2 @@
 [![Build Status](https://travis-ci.org/aslepakurov/common-spark-template.svg?branch=master)](https://travis-ci.org/aslepakurov/common-spark-template) [![Coverage Status](https://coveralls.io/repos/github/aslepakurov/common-spark-template/badge.svg?branch=master)](https://coveralls.io/github/aslepakurov/common-spark-template?branch=master)  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-# This project consist of boilerplate common spark context and few runnable examples
+# Common spark context and few runnable examples
