@@ -149,4 +149,5 @@ object CommonSparkContext {
   val DEFAULT_MASTER   = "local[*]"
   val DEFAULT_APP_NAME = "smartbuy-default"
   val DEFAULT_S3_IMPL  = "org.apache.hadoop.fs.s3native.NativeS3FileSystem"
+  val DEFAULT_CSV_IMPL = "org.apache.spark.sql.execution.datasources.csv.CSVFileFormat"
 }

@@ -1,0 +1,5 @@
+.idea
+metastore_db
+target
+*.iml
+derby.log
