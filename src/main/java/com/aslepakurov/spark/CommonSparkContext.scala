@@ -146,8 +146,9 @@ object CommonSparkContext {
   val AWS_ACCESS_KEY = "--aws-access-key"
   val AWS_SECRET_KEY = "--aws-secret-key"
 
-  val DEFAULT_MASTER   = "local[*]"
-  val DEFAULT_APP_NAME = "smartbuy-default"
-  val DEFAULT_S3_IMPL  = "org.apache.hadoop.fs.s3native.NativeS3FileSystem"
-  val DEFAULT_CSV_IMPL = "org.apache.spark.sql.execution.datasources.csv.CSVFileFormat"
+  val DEFAULT_MASTER     = "local[*]"
+  val DEFAULT_APP_NAME   = "smartbuy-default"
+  val DEFAULT_S3_IMPL    = "org.apache.hadoop.fs.s3native.NativeS3FileSystem"
+  val DEFAULT_CSV_IMPL   = "org.apache.spark.sql.execution.datasources.csv.CSVFileFormat"
+  val DEFAULT_SERIALIZER = "org.apache.spark.serializer.KryoSerializer"
 }
