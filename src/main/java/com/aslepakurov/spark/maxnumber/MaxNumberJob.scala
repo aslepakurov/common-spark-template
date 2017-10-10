@@ -12,6 +12,7 @@ object MaxNumberJob {
       .enableS3Support
       .disableSuccessFile
       .withDriverMemory("1g")
+      .withOverhead("1g")
       .withExecutorMemory("1g")
       .withSerializer(CommonSparkContext.DEFAULT_SERIALIZER)
       .get
