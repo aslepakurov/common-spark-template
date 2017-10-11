@@ -92,11 +92,12 @@ class CommonSparkContext (inputArgs: List[String]) extends Serializable {
   def builder: Builder = {
     new Builder(this)
   }
-  def readToDF(path: String, format: String = "parquet", schema: StructType = null): DataFrame = {
+  def readToDF(path: String, format: String = "parquet", schema: StructType = null, options: Map[String, String] = null): DataFrame = {
     if (sqlContext == null) throw new IllegalArgumentException("Context is not initialized!")
     if (path == null) throw new IllegalArgumentException("Path should be specified!")
     var read = sqlContext.read
     if(schema != null) read = read.schema(schema)
+    if(options != null && options.nonEmpty) read = read.options(options)
     read
       .format(format)
       .load(path)
