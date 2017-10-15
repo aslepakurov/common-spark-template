@@ -14,7 +14,7 @@ object MaxNumberService {
     numbersDF.agg(max("number"))
   }
 
-  def flushMaxNumber(context: MaxNumberContext, maxNumber: DataFrame) = {
+  def flushMaxNumber(context: MaxNumberContext, maxNumber: DataFrame): Unit = {
     context.writeDFToFile(maxNumber, context.outputPath.get, "csv")
   }
 }

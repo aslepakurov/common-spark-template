@@ -12,12 +12,17 @@ object MaxNumberJob {
       .disableSuccessFile
       .get
       .asInstanceOf[MaxNumberContext]
-
-    //1. Read numbers from input file
-    val numbers = readNumbers(context)
-    //2. Get max number
-    val maxNumber = getMaxNumber(context, numbers)
-    //3. Output max number
-    flushMaxNumber(context, maxNumber)
+    try {
+      //1. Read numbers from input file
+      val numbers = readNumbers(context)
+      //2. Get max number
+      val maxNumber = getMaxNumber(context, numbers)
+      //3. Output max number
+      flushMaxNumber(context, maxNumber)
+    } catch {
+      case e: Throwable => println(e.getMessage)
+    } finally {
+      context.close()
+    }
   }
 }
