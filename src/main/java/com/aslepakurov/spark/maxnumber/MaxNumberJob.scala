@@ -1,5 +1,6 @@
 package com.aslepakurov.spark.maxnumber
 
+import com.aslepakurov.spark.CommonSparkContext
 import com.aslepakurov.spark.maxnumber.MaxNumberService._
 
 object MaxNumberJob {
@@ -10,9 +11,15 @@ object MaxNumberJob {
       .initSQL
       .enableS3Support
       .disableSuccessFile
+      .withDriverMemory("1g")
+      .withOverhead("1g")
+      .withExecutorMemory("1g")
+      .withSerializer(CommonSparkContext.DEFAULT_SERIALIZER)
       .get
       .asInstanceOf[MaxNumberContext]
+
     try {
+      context.validateArgs()
       //1. Read numbers from input file
       val numbers = readNumbers(context)
       //2. Get max number

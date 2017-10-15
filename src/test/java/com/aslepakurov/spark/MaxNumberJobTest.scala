@@ -14,10 +14,21 @@ class MaxNumberJobTest extends FlatSpec with Matchers {
     MaxNumberJob.main(MaxNumberContext.buildArgs(Option(resourceToPath("/numbers.csv")), Option(testDirectory.getAbsolutePath)))
     val files = testDirectory.listFiles().filter(_.getName.startsWith("part"))
     files.length should be (1)
-    val outpuFile = files(0)
-    Source.fromFile(outpuFile).getLines() should not be null
-    Source.fromFile(outpuFile).getLines().length should be (1)
-    Source.fromFile(outpuFile).getLines().toList.head should be ("123")
+    val outputFile = files(0)
+    Source.fromFile(outputFile).getLines() should not be null
+    Source.fromFile(outputFile).getLines().length should be (1)
+    Source.fromFile(outputFile).getLines().toList.head should be ("123")
+  }
+
+  "Max number job class" should "be relevant" in {
+    MaxNumberContext.getJobClass should be (MaxNumberJob.getClass)
+  }
+
+  "Max number job" should "throw IllegalArgumentException" in {
+    val thrown = intercept[IllegalArgumentException] {
+      MaxNumberJob.main(Array(MaxNumberContext.NUMBER_STRING, "/empty-path"))
+    }
+    thrown.getMessage should not be empty
   }
 
   private def resourceToPath(fileName: String) = {
