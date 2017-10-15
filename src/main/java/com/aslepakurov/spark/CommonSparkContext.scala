@@ -13,6 +13,7 @@ class CommonSparkContext (inputArgs: List[String]) extends Serializable {
 
   @transient var sparkContext: SparkContext = _
   @transient var sqlContext: SQLContext = _
+  @transient private var sparkSession : SparkSession = _
   val args: Map[String, String] = parseArguments(inputArgs)
 
   class Builder(context: CommonSparkContext) {
@@ -77,9 +78,9 @@ class CommonSparkContext (inputArgs: List[String]) extends Serializable {
     }
 
     def get: CommonSparkContext = {
-      val session = builder.getOrCreate()
-      sparkContext = session.sparkContext
-      sqlContext = session.sqlContext
+      sparkSession = builder.getOrCreate()
+      sparkContext = sparkSession.sparkContext
+      sqlContext = sparkSession.sqlContext
       context
     }
   }
@@ -110,6 +111,10 @@ class CommonSparkContext (inputArgs: List[String]) extends Serializable {
       .format(format)
       .mode(mode)
       .save(path)
+  }
+
+  def close(): Unit = {
+    sparkSession.close()
   }
 
   def printUsageMessage(errors: List[String]): String = {
