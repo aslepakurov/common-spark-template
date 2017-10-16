@@ -113,6 +113,10 @@ class CommonSparkContext (inputArgs: List[String]) extends Serializable {
       .save(path)
   }
 
+  def close(): Unit = {
+    sparkSession.close()
+  }
+
   def printUsageMessage(errors: List[String]): String = {
     "Error%s occurred: %s\n".format(if (errors.size > 1) "s" else "", errors.mkString(","))
   }
