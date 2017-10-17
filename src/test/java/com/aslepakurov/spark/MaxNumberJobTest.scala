@@ -24,6 +24,7 @@ class MaxNumberJobTest extends FlatSpec with Matchers {
     MaxNumberContext.getJobClass should be (MaxNumberJob.getClass)
   }
 
+  //ignore for time being
   "Max number job" should "throw IllegalArgumentException" in {
     val thrown = intercept[IllegalArgumentException] {
       MaxNumberJob.main(Array(MaxNumberContext.NUMBER_STRING, "/empty-path"))
