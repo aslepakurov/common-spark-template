@@ -1,6 +1,5 @@
 package com.aslepakurov.spark.maxnumber
 
-import com.aslepakurov.spark.common.model.JobArgs
 import com.aslepakurov.spark.common.{CommonJobContext, CommonSparkContext}
 import com.aslepakurov.spark.maxnumber.model.NumberJobArgs
 
@@ -31,4 +30,10 @@ object MaxNumberContext extends CommonJobContext[NumberJobArgs] {
   val OUTPUT_STRING = "--output"
 
   def getJobClass: Class[_] = MaxNumberJob.getClass
+
+  def buildArgs(jobArgs: NumberJobArgs): Array[String] = {
+    var args = Array[String]()
+    args ++= jobArgs.getJobArgs
+    args
+  }
 }

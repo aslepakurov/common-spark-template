@@ -10,9 +10,11 @@ import scala.io.Source
 
 class MaxNumberJobTest extends FlatSpec with Matchers {
 
-  ignore should "return max number" in {
+  "Max number job" should "return max number" in {
     val testDirectory = File.createTempFile("test", "null")
-    MaxNumberJob.main(MaxNumberContext.buildArgs(NumberJobArgs(resourceToPath("/numbers.csv"), testDirectory.getAbsolutePath)))
+    val args = NumberJobArgs(resourceToPath("/numbers.csv"), testDirectory.getAbsolutePath)
+    val strings = MaxNumberContext.buildArgs(args)
+    MaxNumberJob.main(strings)
     val files = testDirectory.listFiles().filter(_.getName.startsWith("part"))
     files.length should be (1)
     val outputFile = files(0)

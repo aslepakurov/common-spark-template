@@ -20,6 +20,6 @@ abstract class JobArgs {
   }
 
   def optionPresent(option: String): Boolean = {
-    option == null && !option.trim.equals("")
+    option != null && !option.trim.equals("")
   }
 }
