@@ -1,6 +1,6 @@
 package com.aslepakurov.spark.maxnumber
 
-import com.aslepakurov.spark.CommonSparkContext
+import com.aslepakurov.spark.common.CommonSparkContext
 import com.aslepakurov.spark.maxnumber.MaxNumberService._
 
 object MaxNumberJob {

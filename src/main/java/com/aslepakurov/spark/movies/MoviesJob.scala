@@ -10,6 +10,12 @@ object MoviesJob {
       .get
       .asInstanceOf[MoviesContext]
 
-
+    try {
+      context.validateArgs()
+    } catch {
+      case e: Throwable => println(e.getMessage)
+    } finally {
+      context.close()
+    }
   }
 }

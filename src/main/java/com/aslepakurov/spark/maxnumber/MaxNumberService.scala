@@ -1,6 +1,6 @@
 package com.aslepakurov.spark.maxnumber
 
-import com.aslepakurov.spark.CommonSparkContext
+import com.aslepakurov.spark.common.CommonSparkContext
 import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.functions._
 import org.apache.spark.sql.types.{IntegerType, StructField, StructType}

@@ -1,6 +1,7 @@
 package com.aslepakurov.spark.movies
 
-import com.aslepakurov.spark.CommonSparkContext
+import com.aslepakurov.spark.common.{CommonJobContext, CommonSparkContext}
+import com.aslepakurov.spark.movies.model.MoviesJobArgs
 
 class MoviesContext(inputArgs: List[String]) extends CommonSparkContext(inputArgs) {
   import MoviesContext._
@@ -22,21 +23,9 @@ class MoviesContext(inputArgs: List[String]) extends CommonSparkContext(inputArg
       super.parametersString
   }
 }
-object MoviesContext {
+object MoviesContext extends CommonJobContext[MoviesJobArgs] {
   val MOVIES_PATH  = "--movies-path"
   val CREDITS_PATH = "--credits-path"
 
-  def buildArgs(moviePath: Option[String], creditsPath: Option[String]): Array[String] = {
-    var args = Array[String]()
-    if (optionPresent(moviePath)) args ++= Array(MOVIES_PATH, moviePath.get)
-    if (optionPresent(creditsPath)) args ++= Array(CREDITS_PATH, creditsPath.get)
-    args
-  }
-
   def getJobClass: Class[_] = MoviesJob.getClass
-
-  //TODO: extract to trait
-  private def optionPresent(option: Option[String]): Boolean = {
-    option.isDefined && !option.get.trim.equals("")
-  }
 }

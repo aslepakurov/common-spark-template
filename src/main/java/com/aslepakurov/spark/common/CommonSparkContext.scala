@@ -1,4 +1,4 @@
-package com.aslepakurov.spark
+package com.aslepakurov.spark.common
 
 import org.apache.hadoop.io.compress.GzipCodec
 import org.apache.spark.SparkContext
@@ -53,9 +53,9 @@ class CommonSparkContext (inputArgs: List[String]) extends Serializable {
 
     def enableS3Support: Builder = {
       builder = builder
-        .config("spark.hadoop.fs.s3.impl", args.getOrElse(S3_IMPL, DEFAULT_S3_IMPL))
-        .config("spark.hadoop.fs.s3.awsAccessKeyId", args.getOrElse(AWS_ACCESS_KEY, ""))
-        .config("spark.hadoop.fs.s3.awsSecretAccessKey", args.getOrElse(AWS_SECRET_KEY, ""))
+        .config("spark.hadoop.fs.s3n.impl", args.getOrElse(S3_IMPL, DEFAULT_S3_IMPL))
+        .config("spark.hadoop.fs.s3n.awsAccessKeyId", args.getOrElse(AWS_ACCESS_KEY, ""))
+        .config("spark.hadoop.fs.s3n.awsSecretAccessKey", args.getOrElse(AWS_SECRET_KEY, ""))
       this
     }
 
@@ -153,7 +153,7 @@ object CommonSparkContext {
   val AWS_SECRET_KEY = "--aws-secret-key"
 
   val DEFAULT_MASTER     = "local[*]"
-  val DEFAULT_APP_NAME   = "smartbuy-default"
+  val DEFAULT_APP_NAME   = "default-job"
   val DEFAULT_S3_IMPL    = "org.apache.hadoop.fs.s3native.NativeS3FileSystem"
   val DEFAULT_CSV_IMPL   = "org.apache.spark.sql.execution.datasources.csv.CSVFileFormat"
   val DEFAULT_SERIALIZER = "org.apache.spark.serializer.KryoSerializer"
