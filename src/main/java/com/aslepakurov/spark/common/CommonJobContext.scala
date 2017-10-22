@@ -8,8 +8,4 @@ trait CommonJobContext[+T<: JobArgs] {
   def buildArgs(jobArgs: JobArgs): Array[String] = {
     jobArgs.getJobArgs
   }
-
-  def optionPresent(option: Option[String]): Boolean = {
-    option.isDefined && !option.get.trim.equals("")
-  }
 }

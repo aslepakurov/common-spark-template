@@ -11,18 +11,19 @@ class MoviesContext(inputArgs: List[String]) extends CommonSparkContext(inputArg
 
   def validateArgs(): Unit = {
     val errorMap = Map(
-      moviesPath.isEmpty -> "path to a movies file must be specified!",
+      moviesPath.isEmpty  -> "path to a movies file must be specified!",
       creditsPath.isEmpty -> "path to credits file must be specified!"
     ).filter(_._1)
     if (errorMap.nonEmpty) throw new IllegalArgumentException(printUsageMessage(errorMap.values.toList) + parametersString)
   }
 
   override def parametersString: String = {
-      "\n%s         path to a movies file (required)\n".format(MOVIES_PATH) +
-      "\n%s         path to a credits file (required)\n".format(CREDITS_PATH) +
-      super.parametersString
+    "\n%s         path to a movies file (required)\n".format(MOVIES_PATH) +
+    "\n%s         path to a credits file (required)\n".format(CREDITS_PATH) +
+    super.parametersString
   }
 }
+
 object MoviesContext extends CommonJobContext[MoviesJobArgs] {
   val MOVIES_PATH  = "--movies-path"
   val CREDITS_PATH = "--credits-path"

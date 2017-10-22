@@ -2,6 +2,7 @@ package com.aslepakurov.spark
 
 import java.io.File
 
+import com.aslepakurov.spark.maxnumber.model.NumberJobArgs
 import com.aslepakurov.spark.maxnumber.{MaxNumberContext, MaxNumberJob}
 import org.scalatest.{FlatSpec, Matchers}
 
@@ -11,7 +12,7 @@ class MaxNumberJobTest extends FlatSpec with Matchers {
 
   ignore should "return max number" in {
     val testDirectory = File.createTempFile("test", "null")
-//    MaxNumberJob.main(MaxNumberContext.buildArgs(Option(resourceToPath("/numbers.csv")), Option(testDirectory.getAbsolutePath)))
+    MaxNumberJob.main(MaxNumberContext.buildArgs(NumberJobArgs(resourceToPath("/numbers.csv"), testDirectory.getAbsolutePath)))
     val files = testDirectory.listFiles().filter(_.getName.startsWith("part"))
     files.length should be (1)
     val outputFile = files(0)
@@ -24,8 +25,8 @@ class MaxNumberJobTest extends FlatSpec with Matchers {
     MaxNumberContext.getJobClass should be (MaxNumberJob.getClass)
   }
 
-  ignore should "throw IllegalArgumentException" in {
-    val thrown = intercept[IllegalArgumentException] {
+  "Max number job" should "throw RuntimeException" in {
+    val thrown = intercept[RuntimeException] {
       MaxNumberJob.main(Array(MaxNumberContext.NUMBER_STRING, "/empty-path"))
     }
     thrown.getMessage should not be empty

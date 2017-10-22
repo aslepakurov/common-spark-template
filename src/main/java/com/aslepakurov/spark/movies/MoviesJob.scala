@@ -13,7 +13,9 @@ object MoviesJob {
     try {
       context.validateArgs()
     } catch {
-      case e: Throwable => println(e.getMessage)
+      case e: Throwable =>
+        println(e.getMessage)
+        throw new RuntimeException(e)
     } finally {
       context.close()
     }

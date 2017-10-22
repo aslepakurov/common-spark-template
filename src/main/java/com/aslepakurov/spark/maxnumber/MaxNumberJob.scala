@@ -27,7 +27,9 @@ object MaxNumberJob {
       //3. Output max number
       flushMaxNumber(context, maxNumber)
     } catch {
-      case e: Throwable => println(e.getMessage)
+      case e: Throwable =>
+        println(e.getMessage)
+        throw new RuntimeException(e)
     } finally {
       context.close()
     }
