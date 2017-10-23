@@ -24,6 +24,7 @@ class CommonSparkContext (inputArgs: List[String]) extends Serializable {
         .master(args.getOrElse(SPARK_MASTER, DEFAULT_MASTER))
         .appName(args.getOrElse(APP_NAME, DEFAULT_APP_NAME))
         .config("spark.sql.warehouse.dir", "/tmp/warehouse-"+System.currentTimeMillis())
+        .config("hive.metastore.warehouse.dir", "/tmp/metastore-"+System.currentTimeMillis())
       this
     }
 
