@@ -23,7 +23,7 @@ class CommonSparkContext (inputArgs: List[String]) extends Serializable {
       builder = builder
         .master(args.getOrElse(SPARK_MASTER, DEFAULT_MASTER))
         .appName(args.getOrElse(APP_NAME, DEFAULT_APP_NAME))
-        .config("spark.sql.warehouse.dir", "/tmp/warehouse")
+        .config("spark.sql.warehouse.dir", "/tmp/warehouse-"+System.currentTimeMillis())
       this
     }
 
